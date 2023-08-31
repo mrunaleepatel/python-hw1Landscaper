@@ -120,6 +120,8 @@ def main():
         elif choice == "10":
             display_earnings(earnings)
         elif choice == "11":
+            if has_students and earnings >= 1000:
+                print("You have won the game")
             print("Exiting the program.")
             break
         else:
