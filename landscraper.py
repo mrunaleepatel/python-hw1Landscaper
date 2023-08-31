@@ -18,19 +18,31 @@ def cut_grass_with_scissors(earnings):
     print("You used the rusty scrissors to cut and earned $5")
     return earnings
 
+def buy_push_lawnmower(earnings, has_scissors, has_lawnmower):
+    if not has_scissors and earnings >= 25 and has_scissors:
+        earnings -= 25
+        has_lawnmower = True
+        print("You bought an old push lawnmover")
+    else:
+        print("You either already have a lawnmower, don't have enough money, or need scissors to buy it")
+    
+    return earnings, has_lawnmower
+
 def display_earnings(earnings):
     print(f"Total earnings: ${earnings}")
 
 def main():
     earnings = 0
     has_scissors = False
+    has_lawnmower = False
 
     while True:
         print("1. Use teeth to cut grass and earn $1")
         print("2. Buy rusty scrissors for $5")
         print("3. Use rusty scissors to cut grass and earn $5")
-        print("4. Display total earnings")
-        print("5. Quit")
+        print("4. Buy push lawnmower for $25")
+        print("5. Display total earnings")
+        print("6. Quit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -43,8 +55,10 @@ def main():
             else:
                 print("You need to buy rusty scissors first")
         elif choice == "4":
-            display_earnings(earnings)
+            earnings, has_lawnmower = buy_push_lawnmower(earnings, has_scissors, has_lawnmower)
         elif choice == "5":
+            display_earnings(earnings)
+        elif choice == "6":
             print("Exiting the program.")
             break
         else:
