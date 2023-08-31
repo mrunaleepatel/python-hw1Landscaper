@@ -58,6 +58,11 @@ def hire_students(earnings, has_fancy_lawnmower, has_students):
 
     return earnings, has_students
 
+def cut_grass_with_students(earnings):
+    earnings += 250
+    print("You used the team of starving students to cut grass and earned $250.")
+    return earnings
+
 def display_earnings(earnings):
     print(f"Total earnings: ${earnings}")
 
@@ -77,8 +82,9 @@ def main():
         print("6. Buy fancy lawnmower for $250")
         print("7. Use fancy lawnmower to cut grass and earn $100")
         print("8. Hire team of starving students for $500")
-        print("9. Display total earnings")
-        print("10. Quit")
+        print("9. Use team of starving students to cut grass and earn $250")
+        print("10. Display total earnings")
+        print("11. Quit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -107,8 +113,13 @@ def main():
         elif choice == "8":
             earnings, has_students = hire_students(earnings, has_fancy_lawnmower, has_students)
         elif choice == "9":
-            display_earnings(earnings)
+            if has_students:
+                earnings = cut_grass_with_students(earnings)
+            else:
+                print("You need to hire a team of starving students first.")
         elif choice == "10":
+            display_earnings(earnings)
+        elif choice == "11":
             print("Exiting the program.")
             break
         else:
