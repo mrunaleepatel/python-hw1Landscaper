@@ -13,6 +13,11 @@ def buy_rusty_scissors(earnings, has_scissors):
     
     return earnings, has_scissors
 
+def cut_grass_with_scissors(earnings):
+    earnings += 5
+    print("You used the rusty scrissors to cut and earned $5")
+    return earnings
+
 def display_earnings(earnings):
     print(f"Total earnings: ${earnings}")
 
@@ -23,8 +28,9 @@ def main():
     while True:
         print("1. Use teeth to cut grass and earn $1")
         print("2. Buy rusty scrissors for $5")
-        print("3. Display total earnings")
-        print("4. Quit")
+        print("3. Use rusty scissors to cut grass and earn $5")
+        print("4. Display total earnings")
+        print("5. Quit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -32,8 +38,13 @@ def main():
         elif choice == "2":
             earnings, has_scissors = buy_rusty_scissors(earnings, has_scissors)
         elif choice == "3":
-            display_earnings(earnings)
+            if has_scissors:
+                earnings = cut_grass_with_scissors(earnings)
+            else:
+                print("You need to buy rusty scissors first")
         elif choice == "4":
+            display_earnings(earnings)
+        elif choice == "5":
             print("Exiting the program.")
             break
         else:
